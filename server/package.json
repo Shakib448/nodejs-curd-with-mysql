@@ -1,6 +1,17 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "server.js",
+  "license": "MIT",
+  "types": "module",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon serve"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.0",
+    "mysql": "^2.18.1"
+  }
 }
