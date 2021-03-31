@@ -80,7 +80,7 @@ const postEmployee = async (req, res) => {
 };
 
 // @Description PUT Employee
-// @routes /PUT/api/employee/:id
+// @routes /PUT/api/employee
 // @access Private
 
 const putEmployee = async (req, res) => {

@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/", allEmployees);
 router.post("/", postEmployee);
-router.put("/:id", putEmployee);
+router.put("/", putEmployee);
 router.get("/:id", getEmployeesById);
 router.delete("/:id", deleteEmployeeById);
 
