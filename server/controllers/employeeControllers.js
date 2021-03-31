@@ -57,7 +57,6 @@ const deleteEmployeeById = async (req, res) => {
 
 const postEmployee = async (req, res) => {
   try {
-    console.log(req.body);
     let emp = req.body;
     let sql =
       "SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; CALL EmployeeAddOrEdit(@EmpID, @Name,@EmpCode, @Salary);";
@@ -67,7 +66,11 @@ const postEmployee = async (req, res) => {
       [emp.EmpID, emp.Name, emp.EmpCode, emp.Salary],
       async (err, rows, fileds) => {
         if (err) throw err;
-        res.send(rows);
+        rows.map((elem) => {
+          if (elem.constructor === Array) {
+            res.send(`Inserted id is ${elem[0].EmpID}`);
+          }
+        });
       }
     );
   } catch (error) {
