@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    connectDB.query("SELECT * from people", (err, rows, fileds) => {
+    let sql = "SELECT * from people";
+    connectDB.query(sql, (err, rows, fileds) => {
       if (err) throw err;
       res.send(rows);
     });
