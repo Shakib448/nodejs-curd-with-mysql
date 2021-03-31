@@ -1,9 +1,10 @@
-import express from "express";
 import connectDB from "../config/db.js";
 
-const router = express.Router();
+// @Description All Employee
+// @routes /Get/api/employee
+// @access public
 
-router.get("/", async (req, res) => {
+const allEmployees = async (req, res) => {
   try {
     let sql = "SELECT * from employee";
     connectDB.query(sql, (err, rows, fileds) => {
@@ -13,6 +14,6 @@ router.get("/", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-});
+};
 
-export default router;
+export { allEmployees };

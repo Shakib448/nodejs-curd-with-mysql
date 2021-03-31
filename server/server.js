@@ -1,7 +1,7 @@
 import express from "express";
 import "colors";
 import dotenv from "dotenv";
-import EmployeeRoutes from "./routes/people.js";
+import EmployeeRoutes from "./routes/employee.js";
 
 const app = express();
 
