@@ -13,7 +13,25 @@ const allEmployees = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    throw new Error("Not found");
   }
 };
 
-export { allEmployees };
+// @Description Specific
+// @routes /Get/api/employee/:id
+// @access public
+
+const employeesById = async (req, res) => {
+  try {
+    let sql = "SELECT * from employee WHERE EmpID = ?";
+    connectDB.query(sql, [req.params.id], async (err, rows, fileds) => {
+      if (err) throw err;
+      res.send(rows);
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("Not found");
+  }
+};
+
+export { allEmployees, employeesById };
