@@ -17,11 +17,11 @@ const allEmployees = async (req, res) => {
   }
 };
 
-// @Description Specific
+// @Description Employee by Id
 // @routes /Get/api/employee/:id
 // @access public
 
-const employeesById = async (req, res) => {
+const getEmployeesById = async (req, res) => {
   try {
     let sql = "SELECT * from employee WHERE EmpID = ?";
     connectDB.query(sql, [req.params.id], async (err, rows, fileds) => {
@@ -34,4 +34,21 @@ const employeesById = async (req, res) => {
   }
 };
 
-export { allEmployees, employeesById };
+// @Description Delete Employee by Id
+// @routes /Get/api/employee/:id
+// @access public
+
+const deleteEmployeeById = async (req, res) => {
+  try {
+    let sql = "DELETE employee WHERE EmpID = ?";
+    connectDB.query(sql, [req.params.id], async (err, rows, fileds) => {
+      if (err) throw err;
+      res.send("Deleted Successfully");
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("Not found");
+  }
+};
+
+export { allEmployees, getEmployeesById, deleteEmployeeById };
