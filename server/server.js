@@ -8,11 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 dotenv.config();
+// DB
+connectDB();
 
 // Body parser
 app.use(express.json());
-// DB
-connectDB();
 
 app.listen(
   PORT,
