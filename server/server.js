@@ -1,7 +1,7 @@
 import express from "express";
 import "colors";
 import dotenv from "dotenv";
-import PeopleRoutes from "./routes/people.js";
+import EmployeeRoutes from "./routes/people.js";
 
 const app = express();
 
@@ -13,7 +13,7 @@ dotenv.config();
 app.use(express.json());
 
 // App routes
-app.use("/people", PeopleRoutes);
+app.use("/employee", EmployeeRoutes);
 
 app.listen(
   PORT,
