@@ -1,18 +1,19 @@
 import express from "express";
 import "colors";
 import dotenv from "dotenv";
-import connectDB from "./config/db.js";
+import PeopleRoutes from "./routes/people.js";
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
 
 dotenv.config();
-// DB
-connectDB();
 
 // Body parser
 app.use(express.json());
+
+// App routes
+app.use("/people", PeopleRoutes);
 
 app.listen(
   PORT,
