@@ -52,7 +52,7 @@ const deleteEmployeeById = async (req, res) => {
 };
 
 // @Description POST Employee
-// @routes /Post/api/employee/:id
+// @routes /Post/api/employee/
 // @access Private
 
 const postEmployee = async (req, res) => {
@@ -68,7 +68,7 @@ const postEmployee = async (req, res) => {
         if (err) throw err;
         rows.map((elem) => {
           if (elem.constructor === Array) {
-            res.send(`Inserted id is ${elem[0].EmpID}`);
+            res.send(`Inserted Employee id is ${elem[0].EmpID}`);
           }
         });
       }
@@ -79,4 +79,34 @@ const postEmployee = async (req, res) => {
   }
 };
 
-export { allEmployees, getEmployeesById, deleteEmployeeById, postEmployee };
+// @Description PUT Employee
+// @routes /PUT/api/employee/:id
+// @access Private
+
+const putEmployee = async (req, res) => {
+  try {
+    let emp = req.body;
+    let sql =
+      "SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; CALL EmployeeAddOrEdit(@EmpID, @Name,@EmpCode, @Salary);";
+
+    connectDB.query(
+      sql,
+      [emp.EmpID, emp.Name, emp.EmpCode, emp.Salary],
+      async (err, rows, fileds) => {
+        if (err) throw err;
+        res.send("Updated Successfully");
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    throw new Error("Not found");
+  }
+};
+
+export {
+  allEmployees,
+  getEmployeesById,
+  deleteEmployeeById,
+  postEmployee,
+  putEmployee,
+};
