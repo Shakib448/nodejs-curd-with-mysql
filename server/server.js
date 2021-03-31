@@ -13,7 +13,7 @@ dotenv.config();
 app.use(express.json());
 
 // App routes
-app.use("/employee", EmployeeRoutes);
+app.use("/api/employee", EmployeeRoutes);
 
 app.listen(
   PORT,

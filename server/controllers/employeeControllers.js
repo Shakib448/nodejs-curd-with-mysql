@@ -35,12 +35,12 @@ const getEmployeesById = async (req, res) => {
 };
 
 // @Description Delete Employee by Id
-// @routes /Get/api/employee/:id
+// @routes /Delete/api/employee/:id
 // @access public
 
 const deleteEmployeeById = async (req, res) => {
   try {
-    let sql = "DELETE employee WHERE EmpID = ?";
+    let sql = "DELETE FROM employee WHERE EmpID = ?";
     connectDB.query(sql, [req.params.id], async (err, rows, fileds) => {
       if (err) throw err;
       res.send("Deleted Successfully");
