@@ -1,13 +1,10 @@
 import express from "express";
 import "colors";
-import dotenv from "dotenv";
 import EmployeeRoutes from "./routes/employee.js";
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-
-dotenv.config();
 
 // Body parser
 app.use(express.json());
