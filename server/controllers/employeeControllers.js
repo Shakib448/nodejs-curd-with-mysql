@@ -51,4 +51,29 @@ const deleteEmployeeById = async (req, res) => {
   }
 };
 
-export { allEmployees, getEmployeesById, deleteEmployeeById };
+// @Description POST Employee
+// @routes /Post/api/employee/:id
+// @access Private
+
+const postEmployee = async (req, res) => {
+  try {
+    console.log(req.body);
+    let emp = req.body;
+    let sql =
+      "SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; CALL EmployeeAddOrEdit(@EmpID, @Name,@EmpCode, @Salary);";
+
+    connectDB.query(
+      sql,
+      [emp.EmpID, emp.Name, emp.EmpCode, emp.Salary],
+      async (err, rows, fileds) => {
+        if (err) throw err;
+        res.send(rows);
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    throw new Error("Not found");
+  }
+};
+
+export { allEmployees, getEmployeesById, deleteEmployeeById, postEmployee };
